@@ -72,7 +72,41 @@ int main() {
      printf("Erro: Navio vertical fora dos limites!\n");
      return 1;
  }
- 
+   
+// --- Navio Diagonal 1 (Diagonal Crescente) ---
+// Posicionado na posição (0,0) e se estendendo para baixo e para a direita.
+int linhaNavioD1 = 3;
+int colunaNavioD1 = 1;
+if (linhaNavioD1 + tamanhoNavio - 1 < 10 && colunaNavioD1 + tamanhoNavio - 1 < 10) {
+    for (i = 0; i < tamanhoNavio; i++){
+        if (tabuleiro[linhaNavioD1 + i][colunaNavioD1 + i] != 0) {
+            printf("Erro: sobreposição no navio diagonal 1!\n");
+            return 1;
+        }
+        tabuleiro[linhaNavioD1 + i][colunaNavioD1 + i] = 3;
+    }
+} else {
+    printf("Erro: Navio diagonal 1 fora dos limites!\n");
+    return 1;
+}
+    
+// --- Navio Diagonal 2 (Diagonal Decrescente) ---
+// Posicionado no canto superior direito: (0,9) e se estendendo para baixo e para a esquerda.
+int linhaNavioD2 = 0;
+int colunaNavioD2 = 9;
+if (linhaNavioD2 + tamanhoNavio - 1 < 10 && colunaNavioD2 - (tamanhoNavio - 1) >= 0) {
+    for (i = 0; i < tamanhoNavio; i++){
+        if (tabuleiro[linhaNavioD2 + i][colunaNavioD2 - i] != 0) {
+            printf("Erro: sobreposição no navio diagonal 2!\n");
+            return 1;
+        }
+        tabuleiro[linhaNavioD2 + i][colunaNavioD2 - i] = 3;
+    }
+} else {
+    printf("Erro: Navio diagonal 2 fora dos limites!\n");
+    return 1;
+}
+
  // ---------------------- Exibição do Tabuleiro ----------------------
  // Cabeçalho: imprime as letras das colunas
  printf("\n TABULEIRO BATALHA NAVAL\n");
