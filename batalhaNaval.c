@@ -5,17 +5,19 @@
 // Sugestão: Posicione quatro navios no tabuleiro, incluindo dois na diagonal.
 // Sugestão: Exiba o tabuleiro completo no console, mostrando 0 para posições vazias e 3 para posições ocupadas.
 
+#define TAM 10  // Tamanho do tabuleiro (10x10)
+
 int main() {
 
  // ------------------------- Criando o tabuleiro -------------------------  
  // Criando o tabuleiro (matriz 10x10)
- int tabuleiro[10][10]; // Declaração da matriz que representa o tabuleiro
+ int tabuleiro[TAM][TAM]; // Declaração da matriz que representa o tabuleiro
  int i, j;
- char linha[10] = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'}; // Array de caracteres que representa as letras das colunas (A a J)
+ char linha[TAM] = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'}; // Array de caracteres que representa as letras das colunas (A a J)
  
  // Inicializa todas as posições do tabuleiro com 0 (representa água)
- for (i = 0; i < 10; i++){
-     for (j = 0; j < 10; j++){
+ for (i = 0; i < TAM; i++){
+     for (j = 0; j < TAM; j++){
          tabuleiro[i][j] = 0;
      }
  }
@@ -30,11 +32,11 @@ int main() {
  // --- Navio Horizontal ---
  // Coordenadas iniciais para o navio horizontal
  // Posição: linha 2 (índice 2, ou seja, terceira linha) e coluna 3 (índice 3, quarta coluna)
- int linhaNavioH = 2;
- int colunaNavioH = 3;
+ int linhaNavioH = 0;
+ int colunaNavioH = 0;
  
- // Verifica se o navio horizontal cabe no tabuleiro (coluna inicial + tamanhoNavio - 1 < 10)
- if (colunaNavioH + tamanhoNavio - 1 < 10) {
+ // Verifica se o navio horizontal cabe no tabuleiro (coluna inicial + tamanhoNavio - 1 < TAM)
+ if (colunaNavioH + tamanhoNavio - 1 < TAM) {
      for (i = 0; i < tamanhoNavio; i++) {
          // Verifica se a posição já está ocupada para evitar sobreposição
          if (tabuleiro[linhaNavioH][colunaNavioH + i] != 0) {
@@ -52,11 +54,11 @@ int main() {
  // --- Navio Vertical ---
  // Coordenadas iniciais para o navio vertical
  // Posição: linha 5 (índice 5, sexta linha) e coluna 7 (índice 7, oitava coluna)
- int linhaNavioV = 5;
- int colunaNavioV = 7;
+ int linhaNavioV = 7;
+ int colunaNavioV = 1;
  
- // Verifica se o navio vertical cabe no tabuleiro (linha inicial + tamanhoNavio - 1 < 10)
- if (linhaNavioV + tamanhoNavio - 1 < 10) {
+ // Verifica se o navio vertical cabe no tabuleiro (linha inicial + tamanhoNavio - 1 < TAM)
+ if (linhaNavioV + tamanhoNavio - 1 < TAM) {
      for (i = 0; i < tamanhoNavio; i++) {
          // Verifica se a posição já está ocupada para evitar sobreposição
          if (tabuleiro[linhaNavioV + i][colunaNavioV] != 0) {
@@ -73,9 +75,9 @@ int main() {
    
 // --- Navio Diagonal 1 (Diagonal Crescente) ---
 // Posicionado na posição (0,0) e se estendendo para baixo e para a direita.
-int linhaNavioD1 = 3;
-int colunaNavioD1 = 1;
-if (linhaNavioD1 + tamanhoNavio - 1 < 10 && colunaNavioD1 + tamanhoNavio - 1 < 10) {
+int linhaNavioD1 = 4;
+int colunaNavioD1 = 0;
+if (linhaNavioD1 + tamanhoNavio - 1 < TAM && colunaNavioD1 + tamanhoNavio - 1 < TAM) {
     for (i = 0; i < tamanhoNavio; i++){
         if (tabuleiro[linhaNavioD1 + i][colunaNavioD1 + i] != 0) {
             printf("Erro: sobreposição no navio diagonal 1!\n");
@@ -92,7 +94,7 @@ if (linhaNavioD1 + tamanhoNavio - 1 < 10 && colunaNavioD1 + tamanhoNavio - 1 < 1
 // Posicionado no canto superior direito: (0,9) e se estendendo para baixo e para a esquerda.
 int linhaNavioD2 = 0;
 int colunaNavioD2 = 9;
-if (linhaNavioD2 + tamanhoNavio - 1 < 10 && colunaNavioD2 - (tamanhoNavio - 1) >= 0) {
+if (linhaNavioD2 + tamanhoNavio - 1 < TAM && colunaNavioD2 - (tamanhoNavio - 1) >= 0) {
     for (i = 0; i < tamanhoNavio; i++){
         if (tabuleiro[linhaNavioD2 + i][colunaNavioD2 - i] != 0) {
             printf("Erro: sobreposição no navio diagonal 2!\n");
@@ -109,16 +111,16 @@ if (linhaNavioD2 + tamanhoNavio - 1 < 10 && colunaNavioD2 - (tamanhoNavio - 1) >
  // Cabeçalho: imprime as letras das colunas
  printf("\n TABULEIRO BATALHA NAVAL\n");
  printf("   "); // Espaço para alinhar com os números das linhas
- for (j = 0; j < 10; j++){
+ for (j = 0; j < TAM; j++){
      printf("%c ", linha[j]);
  }
  printf("\n");
  
  // Imprime cada linha do tabuleiro com o número da linha (1 a 10)
- for (i = 0; i < 10; i++){
+ for (i = 0; i < TAM; i++){
      // Imprime o número da linha (usando i+1 para exibir de 1 a 10)
      printf("%2d ", i + 1);
-     for (j = 0; j < 10; j++){
+     for (j = 0; j < TAM; j++){
          // Cada célula é impressa com um espaço separador
          printf("%d ", tabuleiro[i][j]);
      }
